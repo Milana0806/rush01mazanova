@@ -1,21 +1,21 @@
 int ft_strlen(char *str);
 
-int control_2(int tab[4][4], int pos, int num)
+int control_2(int tab[4][4], int index, int num)
 {
     int i;
 
     i = -1;
-    while (++i < pos / 4)
-        if (tab[i][pos % 4] == num)
+    while (++i < index / 4)
+        if (tab[i][index % 4] == num)
             return (1);
     i = -1;
-    while (++i < pos % 4)
-        if (tab[pos / 4][i] == num)
+    while (++i < index % 4)
+        if (tab[index / 4][i] == num)
             return (1);
     return (0);
 }
 
-int colomns_up(int tab[4][4], int pos, int entry[16])
+int colomns_up(int tab[4][4], int index, int entry[16])
 {
     int i;
     int max;
@@ -24,24 +24,24 @@ int colomns_up(int tab[4][4], int pos, int entry[16])
     i = 0;
     max = 0;
     count = 0;
-    if (pos / 4 == 3)
+    if (index / 4 == 3)
     {
         while (i < 4)
         {
-            if (tab[i][pos % 4] > max)
+            if (tab[i][index % 4] > max)
             {
-                max = tab[i][pos % 4];
+                max = tab[i][index % 4];
                 count++;
             }
             i++;
         }
-        if (entry[pos % 4] != count)
+        if (entry[index % 4] != count)
             return (1);
     }
     return (0);
 }
 
-int rows_right(int tab[4][4], int pos, int entry[16])
+int rows_right(int tab[4][4], int index, int entry[16])
 {
     int i;
     int max_size;
@@ -50,23 +50,23 @@ int rows_right(int tab[4][4], int pos, int entry[16])
     i = 4;
     max_size = 0;
     visible_towers = 0;
-    if (pos % 4 == 3)
+    if (index % 4 == 3)
     {
         while (--i >= 0)
         {
-            if (tab[pos / 4][i] > max_size)
+            if (tab[index / 4][i] > max_size)
             {
-                max_size = tab[pos / 4][i];
+                max_size = tab[index / 4][i];
                 visible_towers++;
             }
         }
-        if (entry[12 + pos / 4] != visible_towers)
+        if (entry[12 + index / 4] != visible_towers)
             return (1);
     }
     return (0);
 }
 
-int colomns_down(int tab[4][4], int pos, int entry[16])
+int colomns_down(int tab[4][4], int index, int entry[16])
 {
     int i;
     int max;
@@ -75,24 +75,24 @@ int colomns_down(int tab[4][4], int pos, int entry[16])
     i = 3;
     max = 0;
     count = 0;
-    if (pos / 4 == 3)
+    if (index / 4 == 3)
     {
         while (i >= 0)
         {
-            if (tab[i][pos % 4] > max)
+            if (tab[i][index % 4] > max)
             {
-                max = tab[i][pos % 4];
+                max = tab[i][index % 4];
                 count++;
             }
             i--;
         }
-        if (entry[4 + pos % 4] != count)
+        if (entry[4 + index % 4] != count)
             return (1);
     }
     return (0);
 }
 
-int rows_left(int tab[4][4], int pos, int entry[16])
+int rows_left(int tab[4][4], int index, int entry[16])
 {
     int i;
     int max;
@@ -101,32 +101,32 @@ int rows_left(int tab[4][4], int pos, int entry[16])
     i = 0;
     max = 0;
     count = 0;
-    if (pos % 4 == 3)
+    if (index % 4 == 3)
     {
         while (i < 4)
         {
-            if (tab[pos / 4][i] > max)
+            if (tab[index / 4][i] > max)
             {
-                max = tab[pos / 4][i];
+                max = tab[index / 4][i];
                 count++;
             }
             i++;
         }
-        if (entry[8 + pos / 4] != count)
+        if (entry[8 + index / 4] != count)
             return (1);
     }
     return (0);
 }
 
-int control_result(int tab[4][4], int pos, int entry[16])
+int control_result(int tab[4][4], int index, int entry[16])
 {
-    if (rows_left(tab, pos, entry) == 1)
+    if (rows_left(tab, index, entry) == 1)
         return (1);
-    if (rows_right(tab, pos, entry) == 1)
+    if (rows_right(tab, index, entry) == 1)
         return (1);
-    if (colomns_down(tab, pos, entry) == 1)
+    if (colomns_down(tab, index, entry) == 1)
         return (1);
-    if (colomns_up(tab, pos, entry) == 1)
+    if (colomns_up(tab, index, entry) == 1)
         return (1);
     return (0);
 }
