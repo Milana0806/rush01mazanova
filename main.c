@@ -8,28 +8,28 @@ int ft_atoi(char *str);
 int ft_strlen(char *str);
 int *tab(char *str);
 int control(int ac, char **av);
-int control_2(int tab[4][4], int pos, int num);
-int control_result(int tab[4][4], int pos, int entry[16]);
+int control_2(int tab[4][4], int index, int num);
+int control_result(int tab[4][4], int index, int entry[16]);
 
-int solve(int tab[4][4], int entry[16], int pos)
+int solve(int tab[4][4], int entry[16], int index)
 {
 	int size;
 
-	if (pos == 16)
+	if (index == 16)
 		return (1);
 	size = 0;
 	while (++size <= 4)
 	{
-		if (control_2(tab, pos, size) == 0)
+		if (control_2(tab, index, size) == 0)
 		{
-			tab[pos / 4][pos % 4] = size;
-			if (control_result(tab, pos, entry) == 0)
+			tab[index / 4][index % 4] = size;
+			if (control_result(tab, index, entry) == 0)
 			{
-				if (solve(tab, entry, pos + 1) == 1)
+				if (solve(tab, entry, index + 1) == 1)
 					return (1);
 			}
 			else
-				tab[pos / 4][pos % 4] = 0;
+				tab[index / 4][index % 4] = 0;
 		}
 	}
 	return (0);
