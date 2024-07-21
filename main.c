@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 void ft_putnbr(int nb);
 void ft_putchar(char c);
 void ft_putstr(char *str);
@@ -70,4 +72,5 @@ int main(int ac, char **av)
 	else
 		ft_putstr("No solutions\n");
 	return (0);
+	free(sol);
 }
