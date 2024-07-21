@@ -68,6 +68,6 @@ int main(int ac, char **av)
 	if (solve(sol, entry, 0) == 1)
 		print_solution(sol);
 	else
-		ft_putstr("Did not find any solutions\n");
+		ft_putstr("No solutions\n");
 	return (0);
 }
